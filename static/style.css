@@ -1,0 +1,348 @@
+/* static/style.css */
+
+/* =========================
+   Doraemon-ish Palette
+   - Blue (main)
+   - White (base)
+   - Red (accent)
+   - Yellow (accent)
+========================= */
+:root{
+  --bg: #f6f9ff;             /* 全体背景（ほんのり青み） */
+  --panel: #ffffff;          /* カード白 */
+  --text: #0f172a;           /* 濃紺 */
+  --muted: #5b6b84;          /* サブテキスト */
+  --border: rgba(15, 23, 42, 0.10);
+
+  --blue: #2f6fdb;           /* メインブルー */
+  --blue-2: #1f56b6;         /* 濃い青 */
+  --blue-soft: #eaf2ff;      /* KPI背景など */
+
+  --red: #ff3b30;            /* 赤（ドラえもんの首輪っぽい） */
+  --yellow: #ffd60a;         /* 黄色（鈴っぽい） */
+
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --radius: 18px;
+}
+
+/* =========================
+   Base
+========================= */
+*{ box-sizing:border-box; }
+html,body{
+  margin:0; padding:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", Segoe UI, Roboto, Arial;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* container */
+.container{
+  width:min(1100px, 92vw);
+  margin:0 auto;
+}
+
+/* =========================
+   Header (青 + 赤ライン)
+========================= */
+.nav{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: linear-gradient(180deg, var(--blue), var(--blue-2));
+  color:#fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  border-bottom: 6px solid var(--red); /* ★赤ラインでドラえもん感 */
+}
+
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 14px 0;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  font-size: 18px;
+}
+
+/* バッジ：黄色を鈴っぽく */
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+.brand .badge{
+  background: rgba(255, 214, 10, 0.20);
+  border: 1px solid rgba(255, 214, 10, 0.35);
+}
+
+/* 右上の “Tablet Optimized” は白っぽく */
+.nav .badge:last-child{
+  background: rgba(255,255,255,0.14);
+}
+
+/* =========================
+   Layout
+========================= */
+.hero{
+  padding: 22px 0 6px;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.main{
+  padding: 14px 0 40px;
+}
+
+.main-grid{
+  display:grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: 18px;
+}
+
+@media (max-width: 920px){
+  .hero-grid, .main-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   Panel / Card
+========================= */
+.panel{
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.pad{ padding: 18px; }
+
+.section-title{
+  font-weight: 900;
+  color: var(--blue-2);
+  margin-bottom: 10px;
+  display:flex;
+  align-items:center;
+  gap: 10px;
+}
+
+/* ★タイトル左に“黄色の鈴”っぽい点 */
+.section-title::before{
+  content:"";
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--yellow);
+  box-shadow: 0 0 0 4px rgba(255, 214, 10, 0.22);
+}
+
+/* =========================
+   Typography
+========================= */
+.h-title{
+  margin:0 0 8px;
+  font-size: 34px;
+  line-height: 1.15;
+  color: var(--blue-2);
+  letter-spacing: .2px;
+}
+
+.h-sub{
+  margin: 0 0 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.help{
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* =========================
+   Buttons (青ベース + 赤/黄アクセント)
+========================= */
+.controls{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 10px 0 6px;
+}
+
+.btn{
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform .06s ease, filter .2s ease, box-shadow .2s ease;
+  box-shadow: 0 10px 16px rgba(47,111,219,0.18);
+  background: var(--blue);
+  color:#fff;
+}
+
+.btn:hover{ filter: brightness(1.03); }
+.btn:active{ transform: translateY(1px); }
+
+.btn.ghost{
+  background: #fff;
+  color: var(--blue-2);
+  border: 2px solid rgba(47,111,219,0.22);
+  box-shadow: none;
+}
+
+/* 推定ボタン：メインブルー（そのまま） */
+#btnPredict{
+  background: var(--blue);
+  box-shadow: 0 10px 16px rgba(47,111,219,0.22);
+}
+
+
+/* ★消去/戻すを“黄色”系に寄せてもドラえもん感UP */
+#btnClear.btn.ghost, #btnUndo.btn.ghost{
+  border-color: rgba(255, 214, 10, 0.55);
+  color: #7a5b00;
+  background: rgba(255, 214, 10, 0.14);
+}
+
+/* =========================
+   KPI
+========================= */
+.kpis{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.kpi{
+  background: var(--blue-soft);
+  border: 1px solid rgba(47,111,219,0.16);
+  border-radius: 16px;
+  padding: 12px 14px;
+}
+
+.kpi .label{
+  font-weight: 900;
+  color: var(--blue-2);
+  font-size: 13px;
+}
+
+.kpi .value{
+  font-size: 34px;
+  font-weight: 900;
+  margin: 6px 0 2px;
+  color: var(--blue-2);
+}
+
+.kpi .hint{
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* =========================
+   Pills（状態/品質）: 青 + 黄色アクセント
+========================= */
+.pills{ display:flex; gap: 10px; flex-wrap: wrap; }
+
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 12px;
+  background: rgba(47,111,219,0.10);
+  border: 1px solid rgba(47,111,219,0.18);
+  color: var(--blue-2);
+}
+
+.pill::before{
+  content:"";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--yellow); /* ★鈴っぽい */
+}
+
+/* =========================
+   Advice Box（黄色の左ラインを追加）
+========================= */
+.advice{
+  background: rgba(255, 214, 10, 0.12);
+  border: 1px solid rgba(255, 214, 10, 0.35);
+  border-left: 8px solid var(--yellow); /* ★画像の黄色アクセント */
+  border-radius: 14px;
+  padding: 12px 12px;
+  color: #473400;
+  line-height: 1.55;
+}
+
+/* =========================
+   Canvas Area（白〜薄グレー + 枠太め）
+========================= */
+.canvas-wrap{ padding: 16px; }
+
+.canvas-box{
+  border-radius: 16px;
+  background: #f3f4f6; /* ★白(若干グレー) */
+  border: 3px solid rgba(47,111,219,0.28); /* ★青枠太め */
+  overflow:hidden;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.6);
+}
+
+/* canvasは親にフィット */
+#drawCanvas{
+  width: 100%;
+  height: 520px;
+  display:block;
+  touch-action: none; /* タブレットでスクロール抑制 */
+}
+
+/* =========================
+   Debug area
+========================= */
+.result-card{
+  border-radius: 14px;
+  background: rgba(15,23,42,0.03);
+  border: 1px solid rgba(15,23,42,0.06);
+  padding: 12px;
+}
+
+.muted{ color: var(--muted); }
+
+#debugBox{
+  background: rgba(15,23,42,0.03);
+  border: 1px dashed rgba(47,111,219,0.25);
+  border-radius: 12px;
+  padding: 10px;
+  color: rgba(15,23,42,0.78);
+}
+
+/* =========================
+   Footer
+========================= */
+.footer{
+  padding: 18px 0 40px;
+  color: var(--muted);
+  text-align:center;
+}
