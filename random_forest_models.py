@@ -25,9 +25,9 @@ TEST_SIZE = 0.2
 # RandomForest パラメータ（まずはベースライン）
 RF_PARAMS = dict(
     n_estimators=300,
-    max_depth=None,
-    min_samples_split=2,
-    min_samples_leaf=1,
+    max_depth=10,
+    min_samples_split=4,
+    min_samples_leaf=2,
     max_features="sqrt",
     random_state=RANDOM_STATE,
     n_jobs=-1,
